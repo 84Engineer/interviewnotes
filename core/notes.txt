@@ -1,0 +1,40 @@
+- When an object is instantiated, fields and blocks of code are initialized first. Then the constructor is run.
+
+- An array is a fixed-size area of memory on the heap that has space for primitives or pointers to objects.
+
+- Java uses pass-by-value, which means that calls to methods create a copy of the parameters. 
+Assigning new values to those parameters in the method doesn’t affect the caller’s variables.
+
+- Overloaded methods are methods with the same name but a different parameter list. Java calls the most specific method it can find. 
+Exact matches are preferred, followed by wider primitives. After that comes autoboxing and finally varargs.
+
+- The order of initialization is the superclass; 
+static variables and static initializers in the order they appear; 
+instance variables and instance initializers in the order they appear; 
+and finally the constructor.
+Note that static blocks initiated first in both classes and only then goes instance vars and constructors.
+
+- Only static method can be hidden with another static method with same signature.
+
+- Virtual method is a method in which the specific implementation is not determined until runtime. 
+In fact, all non-final, non-static, and non-private Java methods are considered virtual methods, since any of them can be overridden at runtime. 
+Virtual method invocation means that Java will look at subclasses when finding the right method to call. 
+This is true, even from within a method in the superclass.
+
+- A Java class that extends another class inherits all of its public and protected methods and variables. 
+The first line of every constructor is a call to another constructor within the class using this() or a call to a constructor of the parent class using the super() call. 
+If the parent class doesn’t contain a no-argument constructor, an explicit call to the parent constructor must be provided.
+
+- The Java compiler allows methods to be overridden in subclasses if certain rules are followed: 
+a method must have the same signature, be at least as accessible as the parent method, must not declare any new or broader exceptions, and must use covariant return types.
+
+- Abstract classes and methods may not be marked as final or private.
+
+- There are four types of nested classes. 
+Member inner classes require an instance of the outer class to use. 
+They can access private members of that outer class. Local inner classes are classes defined within a method. 
+They can also access private members of the outer class. 
+Local inner classes can also access final or effectively final local variables. 
+Anonymous inner classes are a special type of local inner class that does not have a name. 
+Anonymous inner classes are required to extend exactly one class by name or implement exactly one interface . 
+Static nested classes can exist without an instance of the outer class.

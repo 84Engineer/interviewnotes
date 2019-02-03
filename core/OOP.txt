@@ -1,0 +1,53 @@
+Abstraction
+Abstraction aims to hide complexity from the users and show them only the relevant information. For example, if you want to drive a car, you don’t need to know about its internal workings. The same is true of Java classes. You can hide internal implementation details by using abstract classes or interfaces. On the abstract level, you only need to define the method signatures (name and parameter list) and let each class implement them in their own way.
+Abstraction in Java:
+    • Hides the underlying complexity of data
+    • Helps avoid repetitive code
+    • Presents only the signature of internal functionality
+    • Gives flexibility to programmers to change the implementation of the abstract behaviour
+    • Partial abstraction (0-100%) can be achieved with abstract classes
+    • Total abstraction (100%) can be achieved with interfaces
+Encapsulation
+Encapsulation allows us to protect the data stored in a class from system-wide access. As its name suggests, it safeguards the internal contents of a class like a real-life capsule. You can implement encapsulation in Java by keeping the fields (class variables) private and providing public getter and setter methods to each of them. Java Beans are examples of fully encapsulated classes.
+Encapsulation in Java:
+    • Restricts direct access to data members (fields) of a class.
+    • Fields are set to private
+    • Each field has a getter and setter method
+    • Getter methods return the field
+    • Setter methods let us change the value of the field
+Polymorphism
+Polymorphismrefers to the ability to perform a certain action in different ways. In Java, polymorphism can take two forms: method overloading and method overriding. Method overloading happens when various methods with the same name are present in a class. When they are called they are differentiated by the number, order, and types of their parameters. Method overriding occurs when the child class overrides a method of its parent.
+Polymorphism in Java:
+    • The same method name is used several times.
+    • Different methods of the same name can be called from the object.
+    • All Java objects can be considered polymorphic (at the minimum, they are of their own type and instances of the Object class).
+    • Example of static polymorphism in Java is method overloading.
+    • Example of dynamic polymorphism in Java is method overriding.
+Inheritance
+Inheritance makes it possible to create a child class that inherits the fields and methods of the parent class. The child class can override the values and methods of the parent class, however it’s not necessary. It can also add new data and functionality to its parent. Parent classes are also called superclasses or base classes, while child classes are known as subclasses or derived classes as well. Java uses the extends keyword to implement the principle of inheritance in code.
+Inheritance in Java:
+    • A class (child class) can extend another class (parent class) by inheriting its features.
+    • Implements the DRY (Don’t Repeat Yourself) programming principle.
+    • Improves code reusability.
+    • Multilevel inheritance is allowed in Java (a child class can have its own child class as well).
+    • Multiple inheritances are not allowed in Java (a class can’t extend more than one class).
+Association
+Besides the four main principles of OOP, Java also works with three further concepts (association, aggregation, composition) you can make use of when designing your programs. Aggregation is a special form of association, while composition is a special form of aggregation.
+Association simply means the act of establishing a relationship between two unrelated classes. For example, when you declare two fields of different types (e.g. Car and Bicycle) within the same class and make them interact with each other, you have performed association.
+Association in Java:
+    • Two separate classes are associated through their objects.
+    • The two classes are unrelated, each can exist without the other one.
+    • Can be a one-to-one, one-to-many, many-to-one, or many-to-many relationship.
+Aggregation
+Aggregation is a narrower kind of association. It occurs when there’s a one-way (HAS-A) relationship between the two classes you associate through their objects. For example, every Passenger has a Car but a Car doesn’t necessarily have a Passenger. When you declare the Passenger class, you can create a field of the Car type that shows which car the passenger belongs to. Then, when you instantiate a new Passenger object, you can access the data stored in the related Car as well.
+Aggregation in Java:
+    • One-directional association.
+    • Represents a HAS-A relationship between two classes.
+    • Only one class is dependent on the other.
+Composition
+Compositionis a stricter form of aggregation. It occurs when the two classes you associate are mutually dependent on each other and can’t exist without each other. For example, take a Car and an Engine class. A Car cannot run without an Engine, while an Engine also can’t function without being built into a Car. This kind of relationship between objects is also called a PART-OF relationship.
+Composition in Java:
+    • A restricted form of aggregation
+    • Represents a PART-OF relationship between two classes
+    • Both classes are dependent on each other
+    • If one class ceases to exist, the other can’t survive alone
