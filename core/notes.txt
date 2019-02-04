@@ -1,12 +1,20 @@
 - When an object is instantiated, fields and blocks of code are initialized first. Then the constructor is run.
 
+************
+
 - An array is a fixed-size area of memory on the heap that has space for primitives or pointers to objects.
+
+************
 
 - Java uses pass-by-value, which means that calls to methods create a copy of the parameters. 
 Assigning new values to those parameters in the method doesn’t affect the caller’s variables.
 
+************
+
 - Overloaded methods are methods with the same name but a different parameter list. Java calls the most specific method it can find. 
 Exact matches are preferred, followed by wider primitives. After that comes autoboxing and finally varargs.
+
+************
 
 - The order of initialization is the superclass; 
 static variables and static initializers in the order they appear; 
@@ -14,21 +22,33 @@ instance variables and instance initializers in the order they appear;
 and finally the constructor.
 Note that static blocks initiated first in both classes and only then goes instance vars and constructors.
 
+************
+
 - Only static method can be hidden with another static method with same signature.
+
+************
 
 - Virtual method is a method in which the specific implementation is not determined until runtime. 
 In fact, all non-final, non-static, and non-private Java methods are considered virtual methods, since any of them can be overridden at runtime. 
 Virtual method invocation means that Java will look at subclasses when finding the right method to call. 
 This is true, even from within a method in the superclass.
 
+************
+
 - A Java class that extends another class inherits all of its public and protected methods and variables. 
 The first line of every constructor is a call to another constructor within the class using this() or a call to a constructor of the parent class using the super() call. 
 If the parent class doesn’t contain a no-argument constructor, an explicit call to the parent constructor must be provided.
 
+************
+
 - The Java compiler allows methods to be overridden in subclasses if certain rules are followed: 
 a method must have the same signature, be at least as accessible as the parent method, must not declare any new or broader exceptions, and must use covariant return types.
 
+************
+
 - Abstract classes and methods may not be marked as final or private.
+
+************
 
 - There are four types of nested classes. 
 Member inner classes require an instance of the outer class to use. 
@@ -38,3 +58,161 @@ Local inner classes can also access final or effectively final local variables.
 Anonymous inner classes are a special type of local inner class that does not have a name. 
 Anonymous inner classes are required to extend exactly one class by name or implement exactly one interface . 
 Static nested classes can exist without an instance of the outer class.
+
+************
+
+- The equals() method implements an equivalence relation on non‐null object references:
+■■ It is reflexive: For any non‐null reference value x, x.equals(x) should return true.
+■■ It is symmetric: For any non‐null reference values x and y, x.equals(y) should return
+true if and only if y.equals(x) returns true.
+■■ It is transitive: For any non‐null reference values x, y, and z, if x.equals(y) returns
+true and y.equals(z) returns true, then x.equals(z) should return true.
+■■ It is consistent: For any non‐null reference values x and y, multiple invocations of
+x.equals(y) consistently return true or consistently return false, provided no
+information used in equals comparisons on the objects is modified.
+■■ For any non‐null reference value x, x.equals(null) should return false.
+
+■■ Within the same program, the result of hashCode() must not change. This means that
+you shouldn’t include variables that change in figuring out the hash code. In our hippo
+example, including the name is fine. Including the weight is not because hippos change
+weight regularly.
+■■ If equals() returns true when called with two objects, calling hashCode() on each of
+those objects must return the same result. This means hashCode() can use a subset of
+the variables that equals() uses. You saw this in the card example. We used only one
+of the variables to determine the hash code.
+■■ If equals() returns false when called with two objects, calling hashCode() on each of
+those objects does not have to return a different result. This means hashCode() results
+do not need to be unique when called on unequal objects.
+
+************
+
+- Generics allow you to specify wildcards. <?> is an unbounded wildcard that means any type. 
+<? extends Object> is an upper bound that means any type that is Object or extends it. 
+<? extends MyInterface> means any type that implements MyInterface. <? super Number> is a lower bound that means any type that is Number or a superclass. 
+A compiler error results from code that attempts to add or remove an item in a list with an unbounded or upper-bounded wildcard.
+
+extends
+The wildcard declaration of List<? extends Number> foo3 means that any of these are legal assignments:
+
+List<? extends Number> foo3 = new ArrayList<Number>();  // Number "extends" Number (in this context)
+List<? extends Number> foo3 = new ArrayList<Integer>(); // Integer extends Number
+List<? extends Number> foo3 = new ArrayList<Double>();  // Double extends Number
+Reading - Given the above possible assignments, what type of object are you guaranteed to read from List foo3:
+
+You can read a Number because any of the lists that could be assigned to foo3 contain a Number or a subclass of Number.
+You can't read an Integer because foo3 could be pointing at a List<Double>.
+You can't read a Double because foo3 could be pointing at a List<Integer>.
+Writing - Given the above possible assignments, what type of object could you add to List foo3 that would be legal for all the above possible ArrayList assignments:
+
+You can't add an Integer because foo3 could be pointing at a List<Double>.
+You can't add a Double because foo3 could be pointing at a List<Integer>.
+You can't add a Number because foo3 could be pointing at a List<Integer>.
+You can't add any object to List<? extends T> because you can't guarantee what kind of List it is really pointing to, so you can't guarantee that the object is allowed in that List. The only "guarantee" is that you can only read from it and you'll get a T or subclass of  T.
+
+super
+Now consider List <? super T>.
+
+The wildcard declaration of List<? super Integer> foo3 means that any of these are legal assignments:
+
+List<? super Integer> foo3 = new ArrayList<Integer>();  // Integer is a "superclass" of Integer (in this context)
+List<? super Integer> foo3 = new ArrayList<Number>();   // Number is a superclass of Integer
+List<? super Integer> foo3 = new ArrayList<Object>();   // Object is a superclass of Integer
+Reading - Given the above possible assignments, what type of object are you guaranteed to receive when you read from List foo3:
+
+You aren't guaranteed an Integer because foo3 could be pointing at a List<Number> or List<Object>.
+You aren't guaranteed a Number because foo3 could be pointing at a List<Object>.
+The only guarantee is that you will get an instance of an Object or subclass of Object (but you don't know what subclass).
+Writing - Given the above possible assignments, what type of object could you add to List foo3 that would be legal for all the above possible ArrayList assignments:
+
+You can add an Integer because an Integer is allowed in any of above lists.
+You can add an instance of a subclass of Integer because an instance of a subclass of Integer is allowed in any of the above lists.
+You can't add a Double because foo3 could be pointing at an ArrayList<Integer>.
+You can't add a Number because foo3 could be pointing at an ArrayList<Integer>.
+You can't add an Object because foo3 could be pointing at an ArrayList<Integer>.
+PECS
+Remember PECS: "Producer Extends, Consumer Super".
+
+"Producer Extends" - If you need a List to produce T values (you want to read Ts from the list), you need to declare it with ? extends T, e.g. List<? extends Integer>. But you cannot add to this list.
+
+"Consumer Super" - If you need a List to consume T values (you want to write Ts into the list), you need to declare it with ? super T, e.g. List<? super Integer>. But there are no guarantees what type of object you may read from this list.
+
+If you need to both read from and write to a list, you need to declare it exactly with no wildcards, e.g. List<Integer>.
+
+Example
+Note this example from the Java Generics FAQ. Note how the source list src (the producing list) uses extends, and the destination list dest (the consuming list) uses super:
+
+public class Collections { 
+  public static <T> void copy(List<? super T> dest, List<? extends T> src) {
+      for (int i = 0; i < src.size(); i++) 
+        dest.set(i, src.get(i)); 
+  } 
+}
+
+************
+
+The Java Collections Framework includes four main types of data structures: lists, sets,
+queues, and maps. The Collection interface is the parent interface of List, Set, and Queue.
+The Map interface does not extend Collection. You need to recognize the following:
+
+List—An ordered collection of elements that allows duplicate entries
+■■ ArrayList—Standard resizable list.
+■■ LinkedList—Can easily add/remove from beginning or end.
+■■ Vector—Older thread-safe version of ArrayList.
+■■ Stack—Older last-in, first-out class.
+Set—Does not allow duplicates
+■■ HashSet—Uses hashcode() to find unordered elements.
+■■ TreeSet—Sorted and navigable. Does not allow null values.
+Queue—Orders elements for processing
+■■ LinkedList—Can easily add/remove from beginning or end.
+■■ ArrayDeque—First-in, first-out or last-in, first-out. Does not allow null values.
+Map—Maps unique keys to values
+■■ HashMap—Uses hashcode() to find keys.
+■■ TreeMap—Sorted map. Does not allow null keys.
+■■ Hashtable—Older version of hashmap. Does not allow null keys or values.
+
+************
+
+Lambdas can reference static variables, instance variables, effectively final parameters, and
+effectively final local variables. A functional interface has a single abstract method. You
+must know the functional interfaces:
+■■ Supplier<T>: Method get() returns T
+■■ Consumer<T>: Method accept(T t) returns void
+■■ BiConsumer<T>: Method accept(T t, U u) returns void
+■■ Predicate<T>: Method test(T t) returns boolean
+■■ BiPredicate<T>: Method test(T t, U u) returns boolean
+■■ Function<T, R>: Method apply(T t) returns R
+■■ BiFunction<T, U, R>: Method apply(T t, U u) returns R
+■■ UnaryOperator<T>: Method apply(T t) returns T
+■■ BinaryOperator<T>: Method apply(T t1, T t2) returns T
+
+Capture of local variables is restricted to those that are effectively final. 
+Lifting this restriction would present implementation difficulties, but it would also be undesirable; 
+its presence prevents the introduction of a new class of multithreading bugs involving local variables. 
+Local variables in Java have until now been immune to race conditions and visibility problems because they are accessible only to the thread executing the method in which they are declared. 
+But a lambda can be passed from the thread that created it to a different thread, and that immunity would therefore be lost if the lambda, evaluated by the second thread, were given the ability to mutate local variables. 
+Even the ability to read the value of mutable local variables from a different thread would introduce the necessity for synchronization or the use of volatile in order to avoid reading stale data.
+
+************
+
+1. If a parent class has implemented Serializable interface then child class doesn’t need to implement it but vice-versa is not true.
+2. Only non-static data members are saved via Serialization process.
+3. Static data members and transient data members are not saved via Serialization process.So, if you don’t want to save value of a non-static data member then make it transient.
+4. Constructor of object is never called when an object is deserialized.
+5. Associated objects must be implementing Serializable interface.
+
+By using a built-in feature of the serialization mechanism, developers can enhance the normal process by providing two methods inside their class files. Those methods are:
+private void writeObject(ObjectOutputStream out) throws IOException;
+private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException;
+
+Static fields are not serialized.
+If parent is not serializible, the non-arg constructor of parent is called.
+Contstructors on serialized objects are not called.
+
+************
+
+clone() method has default implementation of shallow copy (creating copy of the object, copying the references). 
+As interfaces doesn't contain implementation, it is placed in Object class (root) and made Cloneable as marker interface (without any methods). 
+This makes the class which is Cloneable to just implement Cloneable interface without providing implementation for clone() method (which would not have been possible if clone method is not in Object class).
+
+One more thing to note is that clone() method in Object class has access modifier protected, this is to restrict call to this method from outside by default. 
+The class which is Cloneable can change the access modifier to public to allow access to outside.
