@@ -1,0 +1,2 @@
+https://dzone.com/articles/weak-soft-and-phantom-references-in-java-and-why-they-matter
+https://www.geeksforgeeks.org/types-references-java/

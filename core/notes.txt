@@ -216,3 +216,13 @@ This makes the class which is Cloneable to just implement Cloneable interface wi
 
 One more thing to note is that clone() method in Object class has access modifier protected, this is to restrict call to this method from outside by default. 
 The class which is Cloneable can change the access modifier to public to allow access to outside.
+
+************
+
+In Java there are four types of references differentiated on the way by which they are garbage collected.
+
+Strong References
+Weak References
+Soft References
+Phantom References
+https://www.geeksforgeeks.org/types-references-java/
