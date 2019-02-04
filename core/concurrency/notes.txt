@@ -1,0 +1,32 @@
+The only reason to extend Thread is if you need to add behavior that is associated with the thread itself, rather than the task that the thread is executing.
+
+For example, if you're implementing a thread pool (which nobody should do anymore, given java.util.concurrent), 
+you would need to change the behavior of the thread so that (1) it can accept new work, and (2) it returns itself to the pool. In a very simplified form:
+
+public void setRunnable(Runnable runnable) {
+    this.runnable = runnable;
+}
+
+public void run() {
+    while (true) {
+        // wait on lock
+        try {
+            this.runnable.run();
+        }
+        catch (Throwable ex) {
+            // do something with exception
+        }
+        finally {
+            // return to pool
+        }
+    }
+}
+
+If you need to define your own Thread rules upon which multiple tasks will rely, such
+as a priority Thread , extending Thread may be preferable.
+Since Java doesn't support multiple inheritance, extending Thread does not allow you to
+extend any other class, whereas implementing Runnable lets you extend another class.
+Implementing Runnable is often a better object-oriented design practice since it sep-
+arates the task being performed from the Thread object performing it.
+Implementing Runnable allows the class to be used by numerous Concurrency API
+classes.
