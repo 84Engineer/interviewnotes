@@ -1,4 +1,4 @@
-- When an object is instantiated, fields and blocks of code are initialized first. Then the constructor is run.
+﻿- When an object is instantiated, fields and blocks of code are initialized first. Then the constructor is run.
 
 ************
 
@@ -226,3 +226,9 @@ Weak References
 Soft References
 Phantom References
 https://www.geeksforgeeks.org/types-references-java/
+
+************
+
+Difference between Runtime.exit() and Runtime.halt()
+
+You might have noticed so far that the difference between the two methods is that Runtime.exit() invokes the shutdown sequence of the underlying JVM whereas Runtime.halt() forcibly terminates the JVM process. So, Runtime.exit() causes the registered shutdown hooks to be executed and then also lets all the uninvoked finalizers to be executed before the JVM process shuts down whereas Runtime.halt() simply terminates the JVM process immediately and abruptly.
