@@ -1,0 +1,28 @@
+ArrayList
+— Быстрый доступ к элементам по индексу за время O(1);
+— Доступ к элементам по значению за линейное время O(n);
+— Медленный, когда вставляются и удаляются элементы из «середины» списка;
+— Позволяет хранить любые значения в том числе и null;
+— Не синхронизирован.
+
+LinkedList
+— Из LinkedList можно организовать стэк, очередь, или двойную очередь, со временем доступа O(1);
+— На вставку и удаление из середины списка, получение элемента по индексу или значению потребуется линейное время O(n). 
+Однако, на добавление и удаление из середины списка, используя ListIterator.add() и ListIterator.remove(), потребуется O(1);
+— Позволяет добавлять любые значения в том числе и null. Для хранения примитивных типов использует соответствующие классы-оберки;
+— Не синхронизирован.
+
+HashMap
+— Добавление элемента выполняется за время O(1), потому как новые элементы вставляются в начало цепочки;
+— Операции получения и удаления элемента могут выполняться за время O(1), если хэш-функция равномерно распределяет элементы и отсутствуют коллизии. 
+Среднее же время работы будет Θ(1 + α), где α — коэффициент загрузки. В самом худшем случае, время выполнения может составить Θ(n) (все элементы в одной цепочке);
+Note, since JDK 8:
+Docs:
+Note that using many keys with the same hashCode() is a sure way to slow down performance of any hash table. 
+To ameliorate impact, when keys are Comparable, this class may use comparison order among keys to help break ties.
+StackOverflow:
+In JDK 8, HashMap has been tweaked so that if keys can be compared for ordering, then any densely-populated bucket is implemented as a tree, 
+so that even if there are lots of entries with the same hash code, the complexity is O(log n). 
+That can cause issues if you have a key type where equality and ordering are different, of course.
+— Ключи и значения могут быть любых типов, в том числе и null. Для хранения примитивных типов используются соответствующие классы-оберки;
+— Не синхронизирован.
