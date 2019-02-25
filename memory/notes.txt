@@ -25,7 +25,7 @@ Turn on the -XX:+UseParallelGC JVM argument to use the parallel garbage collecto
 3. CMS Garbage Collector
 Concurrent Mark Sweep (CMS) garbage collector uses multiple threads to scan the heap memory to mark instances for eviction and then sweep the marked instances. 
 CMS garbage collector holds all the application threads in the following two scenarios only,
-1. While marking the referenced objects in the tenured generation space.
+1. While marking the referenced objects in the tenured (old) generation space.
 2. If there is a change in heap memory in parallel while doing the garbage collection.
 In comparison with parallel garbage collector, CMS collector uses more CPU to ensure better application throughput. 
 If we can allocate more CPU for better performance then CMS garbage collector is the preferred choice over the parallel collector. 
