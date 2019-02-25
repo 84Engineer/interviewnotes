@@ -2,3 +2,9 @@ https://www.baeldung.com/java-concurrency-interview-questions
 http://baddotrobot.com/blog/2013/06/01/optimum-number-of-threads/
 https://en.wikipedia.org/wiki/Context_switch
 
+https://stackoverflow.com/questions/18686121/differences-between-time-complexity-and-space-complexity
+http://bigocheatsheet.com/
+
+https://drive.google.com/file/d/1pA35V9HjQ4RTbjPke0AmDKymF7lIJlLC/view?usp=sharing
+https://drive.google.com/file/d/0B0tu-yeJMcOkWlZCQjgzV3Q2VjQ/view?usp=sharing
+https://drive.google.com/file/d/0B0tu-yeJMcOkQjNBMmNXYkI0cjA/view?usp=sharing
