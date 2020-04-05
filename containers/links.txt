@@ -1,0 +1,6 @@
+https://drive.google.com/open?id=1uGYqLbvvyZDfuAeBPv2Oix56eDtn7-om
+https://app.pluralsight.com/library/courses/docker-web-development
+https://app.pluralsight.com/library/courses/kubernetes-developers-core-concepts
+https://app.pluralsight.com/library/courses/kubernetes-installation-configuration-fundamentals
+https://app.pluralsight.com/library/courses/managing-kubernetes-api-server-pods
+https://app.pluralsight.com/library/courses/managing-kubernetes-controllers-deployments
